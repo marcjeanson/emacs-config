@@ -22,6 +22,10 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
+;; textmate like minor mode: http://github.com/defunkt/textmate.el/tree/master
+(require 'textmate)
+(textmate-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Frame title bar formatting to show full path of file
 (setq-default
@@ -85,4 +89,13 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+
+
+
+;; The Rails plugin remaps the C-c / binding that sgml-close-tag uses. Lets map it to C-c <
+(setq html-mode-hook
+      '(lambda ()
+	 (auto-fill-mode 1)
+	 (define-key html-mode-map "\C-c." 'sgml-close-tag)
+	 ))
 
